@@ -7,10 +7,7 @@ export default class Home extends Component {
   render() {
     return (
       <div>
-        <div className={styles.container} data-tid="container">
-          <Link to="/counter">to Counter</Link>
-          <Link to="/register">Cadastrar Cliente</Link>
-        </div>
+        <h1>Home Page</h1>
       </div>
     );
   }
