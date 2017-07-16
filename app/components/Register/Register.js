@@ -1,18 +1,15 @@
 // @flow
 import React, { Component } from 'react';
-import styles from './Register.css';
-import { Link } from 'react-router-dom';
+import TextField from 'material-ui/TextField';
 
 class Register extends Component {
   render() {
     return (
       <div>
-        <div className={styles.backButton} data-tid="backButton">
-          <Link to="/">
-            <i className="fa fa-arrow-left fa-3x" />
-          </Link>
-        </div>
-        <h1>Registrar cliente</h1>
+        <TextField
+          hintText="Hint Text"
+          floatingLabelText="Floating Label Text"
+        />
       </div>
     );
   }
