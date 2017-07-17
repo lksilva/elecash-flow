@@ -5,7 +5,7 @@ class BusinessList extends Component {
   render() {
     return (
       <div>
-        <h1>Lista de vendas</h1>
+        <h1 className="centralizeText">Lista de vendas</h1>
       </div>
     );
   }
