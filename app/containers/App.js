@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import type { Children } from 'react';
-import Header from './Header';
+import Header from '../components/Header/Header';
 
 export default class App extends Component {
   props: {
