@@ -1,19 +1,25 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import styles from './Header.css';
+import ItemMenu from './ItemMenu';
 
-class Header extends Component {
+class Header extends Component<any, any> {
+  props: {
+    handleClick: () => void,
+    items: array
+  };
+
+  handleOnChange = (menu: string) => {
+    this.props.handleClick(menu);
+  }
+
   render() {
+    const { items } = this.props;
     return (
       <nav className={styles.menu}>
         <ul className={styles.menuList}>
-          <li className={styles.menuItem}><Link className={styles.menuLink} to="/">Página Inicial</Link></li>
-          <li className={styles.menuItem}><Link className={styles.menuLink} to="/businessList">Lista de Vendas</Link></li>
-          <li className={styles.menuItem}><Link className={styles.menuLink} to="/boxBook">Livro Caixa</Link></li>
-          <li className={`${styles.menuItem} ${styles.menuItemCurrent}`}><Link className={styles.menuLink} to="/register">Cadastrar Cliente</Link></li>
+          {items.map(item => <ItemMenu key={item.id} route={item.route} active={item.active} name={item.name} handleOnChange={() => this.handleOnChange(item.name)} />)}
         </ul>
       </nav>
-
     );
   }
 }

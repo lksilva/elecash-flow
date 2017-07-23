@@ -1,7 +1,8 @@
 // @flow
 import React, { Component } from 'react';
 import type { Children } from 'react';
-import Header from '../components/Header/Header';
+// import Header from '../components/Header/Header';
+import HeaderPage from './HeaderPage';
 
 export default class App extends Component {
   props: {
@@ -11,7 +12,7 @@ export default class App extends Component {
   render() {
     return (
       <div className="container">
-        <Header />
+        <HeaderPage />
         {this.props.children}
       </div>
     );
