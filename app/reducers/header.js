@@ -20,12 +20,20 @@ const initialState = {
 
 export default function header(state: items = initialState, action: actionType) {
   switch (action.type) {
-    case HANDLE_MENU:
-    // return Object.assign({}, state, {
-    //     visibilityFilter: action.filter
-    //   })
-      console.debug(action);
-      return state;
+    case HANDLE_MENU: {
+      const itemsChanged = state.items.map(i => {
+        let item = i;
+        if (item.name === action.menu) {
+          item.active = true;
+        } else {
+          item.active = false;
+        }
+        return item;
+      });
+      return Object.assign({}, state, {
+        items: itemsChanged
+      });
+    }
     default:
       return state;
   }

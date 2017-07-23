@@ -1,9 +1,9 @@
 // @flow
 export const HANDLE_MENU = 'HANDLE_MENU';
 
-export function handleClick(id) {
+export function handleClick(name) {
   return {
-    menu: id,
+    menu: name,
     type: HANDLE_MENU
   };
 }
