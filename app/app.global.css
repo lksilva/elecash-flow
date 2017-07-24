@@ -1,35 +1,19 @@
-/* Common styles for all menus */
-@import url(http://fonts.googleapis.com/css?family=Roboto);
-
-/* body {
-  font-family: 'Roboto', sans-serif;
-  background: #f5f9f8;
-} */
-
+/*@import url(http://fonts.googleapis.com/css?family=Roboto);*/
+/*
+#32435c -> header
+#d1dff5 -> body
+#789fdc -> label
+#4e545d -> 
+#5c7aac -> 
+#5cfaac -> destac
+*/
 body {
   width: 100%;
   height: 100%;
-  background: #f5f9f8;
+  background: #d1dff5;
   font-family: 'Roboto', sans-serif, Arial, Helvetica, Helvetica Neue, serif;
   overflow-y: hidden;
   margin: 0;
-}
-
-.container {
-  max-width: 960px;
-  margin: 0 auto;
-  padding-top: 15px;
-}
-
-.centralizeText {
-  text-align: center;
-}
-
-h2 {
-  margin: 0;
-  font-size: 2.25rem;
-  font-weight: bold;
-  letter-spacing: -0.025em;
 }
 
 li {
