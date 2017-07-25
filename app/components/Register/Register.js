@@ -5,6 +5,8 @@ import styles from './Register.css';
 import DatePicker from 'material-ui/DatePicker';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import InputMask from 'react-input-mask';
+import Divider from 'material-ui/Divider';
+import Paper from 'material-ui/Paper';
 
 injectTapEventPlugin();
 
@@ -18,8 +20,20 @@ const customStyle = {
   },
   upperCase: {
     textTransform: 'uppercase'
+  },
+  marginTop: {
+    marginTop: '20px'
   }
 };
+
+const InstructForm = () => (
+  <Paper zDepth={2} style={customStyle.marginTop}>
+    <TextField hintText="QUANTIDADE" underlineShow={false} />
+    <TextField hintText="DESCRICÃO: LENTES/ARMACÃO" underlineShow={false} />
+    <TextField hintText="VALOR" underlineShow={false} />
+    <Divider />
+  </Paper>
+);
 
 class Register extends Component {
 
@@ -107,6 +121,7 @@ class Register extends Component {
               <InputMask mask="(99) 999999999" />
             </TextField>
           </div>
+          <InstructForm />
         </form>
       </div>
     );
