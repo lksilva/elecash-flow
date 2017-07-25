@@ -1,6 +1,7 @@
 .center {
   text-align: center;
 }
+
 .form {
   padding: 10px;
   box-shadow: 0 4px 12px rgba(0,0,0,.175);
@@ -9,4 +10,8 @@
 
 .card {
   margin: 2px 2px 20px 2px;
+  display: flex;
+  justify-content: space-around;
+  background: #F5F5F6;
+  flex-flow: row wrap;
 }

@@ -7,6 +7,16 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 
 injectTapEventPlugin();
 
+const customStyle = {
+  paddingDatePicker: {
+    paddingTop: '24px'
+  },
+  fullRow: {
+    flex: '1 100%',
+    margin: '0 8px 0 8px'
+  }
+};
+
 class Register extends Component {
 
   formatDate(date) {
@@ -23,12 +33,61 @@ class Register extends Component {
               floatingLabelText="TSO"
             />
             <TextField
-              floatingLabelText="Número do Cliente"
+              floatingLabelText="NÚMERO DO CLIENTE"
             />
             <DatePicker
-              hintText="Portrait Inline Dialog"
+              floatingLabelText="DATA"
+              hintText="DATA"
               container="inline"
               formatDate={this.formatDate}
+            />
+            <TextField
+              style={customStyle.fullRow}
+              floatingLabelText="NOME"
+            />
+            <TextField
+              style={customStyle.fullRow}
+              floatingLabelText="PAI"
+            />
+            <TextField
+              style={customStyle.fullRow}
+              floatingLabelText="MÃE"
+            />
+            <TextField
+              floatingLabelText="RG"
+            />
+            <TextField
+              floatingLabelText="ORG EXP"
+            />
+            <TextField
+              floatingLabelText="CPF"
+            />
+            <TextField
+              floatingLabelText="DATA DE NASCIMENTO"
+            />
+            <TextField
+              floatingLabelText="ENDEREÇO"
+            />
+            <TextField
+              floatingLabelText="BAIRRO"
+            />
+            <TextField
+              floatingLabelText="CIDADE"
+            />
+            <TextField
+              floatingLabelText="UF"
+            />
+            <TextField
+              floatingLabelText="CEP"
+            />
+            <TextField
+              floatingLabelText="TELEFONE RESIDENCIAL"
+            />
+            <TextField
+              floatingLabelText="REFERÊNCIAL"
+            />
+            <TextField
+              floatingLabelText="CELULAR"
             />
           </div>
         </form>
