@@ -1,13 +1,17 @@
-// @flow
-import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import Register from '../components/Register/Register';
+import * as RegisterActions from '../actions/register';
 
-class RegisterPage extends Component {
-  render() {
-    return (
-      <Register />
-    );
-  }
+function mapStateToProps(state) {
+  return {
+    entity: state.register.entity
+  };
 }
 
-export default RegisterPage;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(RegisterActions, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
+

@@ -3,12 +3,8 @@ import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 import styles from './Register.css';
 import DatePicker from 'material-ui/DatePicker';
-import injectTapEventPlugin from 'react-tap-event-plugin';
 import InputMask from 'react-input-mask';
 import Divider from 'material-ui/Divider';
-import Paper from 'material-ui/Paper';
-
-injectTapEventPlugin();
 
 const customStyle = {
   paddingDatePicker: {
@@ -27,101 +23,152 @@ const customStyle = {
 };
 
 const InstructForm = () => (
-  <Paper zDepth={2} style={customStyle.marginTop}>
-    <TextField hintText="QUANTIDADE" underlineShow={false} />
-    <TextField hintText="DESCRICÃO: LENTES/ARMACÃO" underlineShow={false} />
-    <TextField hintText="VALOR" underlineShow={false} />
-    <Divider />
-  </Paper>
+  <div className={styles.card}>
+    <div>
+      <h5>QUANTIDADE</h5>
+      <TextField underlineShow={false} name="qt1" />
+      <Divider />
+      <TextField underlineShow={false} name="qt2" />
+      <Divider />
+      <TextField underlineShow={false} name="qt3" />
+      <Divider />
+    </div>
+    <div>
+      <h5>DESCRIÇÃO LENTES/ARMAÇÃO</h5>
+      <TextField underlineShow={false} name="desc1" />
+      <Divider />
+      <TextField underlineShow={false} name="desc2" />
+      <Divider />
+      <TextField underlineShow={false} name="desc3" />
+      <Divider />
+    </div>
+    <div>
+      <h5>VALOR</h5>
+      <TextField underlineShow={false} name="price1" />
+      <Divider />
+      <TextField underlineShow={false} name="price2" />
+      <Divider />
+      <TextField underlineShow={false} name="price3" />
+      <Divider />
+    </div>
+  </div>
 );
 
 class Register extends Component {
+  tso: any;
+  clientNumber: any;
+  props: {
+    handleSubmit: () => void
+  }
+
+  constructor(tso: any, clientNumber: any) {
+    super();
+    this.tso = tso;
+    this.clientNumber = clientNumber;
+  }
 
   formatDate(date) {
     return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
   }
 
   render() {
+    const { handleSubmit } = this.props;
     return (
       <div>
         <h3 className={styles.center}>ORDEM DE SERVIÇO</h3>
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.card}>
             <TextField
               floatingLabelText="TSO"
               type="number"
+              name="tso"
             />
             <TextField
               floatingLabelText="NÚMERO DO CLIENTE"
               type="number"
+              name="clientNumber"
             />
             <DatePicker
               floatingLabelText="DATA"
               hintText="DATA"
               container="inline"
               formatDate={this.formatDate}
+              name="date"
             />
             <TextField
               style={customStyle.fullRow}
               floatingLabelText="NOME"
               inputStyle={customStyle.upperCase}
+              name="name"
             />
             <TextField
               style={customStyle.fullRow}
               floatingLabelText="PAI"
               inputStyle={customStyle.upperCase}
+              name="father"
             />
             <TextField
               style={customStyle.fullRow}
               floatingLabelText="MÃE"
               inputStyle={customStyle.upperCase}
+              name="mother"
             />
             <TextField
               floatingLabelText="RG"
               type="number"
+              name="rg"
             />
             <TextField
               floatingLabelText="ORG EXP"
               inputStyle={customStyle.upperCase}
+              name="org_exp"
             />
-            <TextField floatingLabelText="CPF">
+            <TextField floatingLabelText="CPF" name="cpf">
               <InputMask mask="999.999.999-99" />
             </TextField>
-            <TextField floatingLabelText="DATA DE NASCIMENTO">
+            <TextField floatingLabelText="DATA DE NASCIMENTO" name="date_of_birth">
               <InputMask mask="99/99/9999" />
             </TextField>
             <TextField
               floatingLabelText="ENDEREÇO"
               inputStyle={customStyle.upperCase}
+              name="address"
             />
             <TextField
               floatingLabelText="BAIRRO"
               inputStyle={customStyle.upperCase}
+              name="neighborhood"
             />
             <TextField
               floatingLabelText="CIDADE"
               inputStyle={customStyle.upperCase}
+              name="city"
             />
             <TextField
               floatingLabelText="UF"
               maxLength="2"
               inputStyle={customStyle.upperCase}
+              name="uf"
             />
-            <TextField floatingLabelText="CEP">
+            <TextField floatingLabelText="CEP" name="cep">
               <InputMask mask="99999-9999" />
             </TextField>
-            <TextField floatingLabelText="TELEFONE RESIDENCIAL">
+            <TextField floatingLabelText="TELEFONE RESIDENCIAL" name="phone">
               <InputMask mask="(99) 9999-9999" />
             </TextField>
             <TextField
               floatingLabelText="REFERÊNCIAL"
               inputStyle={customStyle.upperCase}
+              name="reference"
             />
-            <TextField floatingLabelText="CELULAR">
+            <TextField floatingLabelText="CELULAR" name="cell_phone">
               <InputMask mask="(99) 999999999" />
             </TextField>
           </div>
           <InstructForm />
+          <button type="submit">
+            Submit
+          </button>
         </form>
       </div>
     );

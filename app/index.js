@@ -5,31 +5,35 @@ import Root from './containers/Root';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { configureStore, history } from './store/configureStore';
 import './app.global.css';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+// import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import { darkBlack, grey300, white, fullBlack } from 'material-ui/styles/colors';
+import { darkBlack, grey300, fullBlack } from 'material-ui/styles/colors';
 import {fade} from 'material-ui/utils/colorManipulator';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
+injectTapEventPlugin();
+
 const store = configureStore();
 
 const muiTheme = getMuiTheme({
-  palette: {
-    // textColor: darkBlack,
-    // disabledColor: '#789fdc'
-    primary1Color: '#37474f',
-    primary2Color: '#62727b',
-    primary3Color: '#102027',
-    accent1Color: '#b3e5fc',
-    accent2Color: '#e6ffff',
-    accent3Color: '#82b3c9',
-    textColor: '#000000',
-    alternateTextColor: '#ffffff',
-    canvasColor: '#b3e5fc',
-    borderColor: grey300,
-    disabledColor: fade(darkBlack, 0.3),
-    pickerHeaderColor: '#37474f',
-    clockCircleColor: fade(darkBlack, 0.07),
-    shadowColor: fullBlack,
-  },
+  // palette: {
+  //   // textColor: darkBlack,
+  //   // disabledColor: '#789fdc'
+  //   primary1Color: '#37474f',
+  //   primary2Color: '#62727b',
+  //   primary3Color: '#102027',
+  //   accent1Color: '#b3e5fc',
+  //   accent2Color: '#e6ffff',
+  //   accent3Color: '#82b3c9',
+  //   textColor: '#000000',
+  //   alternateTextColor: '#ffffff',
+  //   canvasColor: '#b3e5fc',
+  //   borderColor: grey300,
+  //   disabledColor: fade(darkBlack, 0.3),
+  //   pickerHeaderColor: '#37474f',
+  //   clockCircleColor: fade(darkBlack, 0.07),
+  //   shadowColor: fullBlack,
+  // },
   fontFamily: 'Roboto, sans-serif',
 });
 
