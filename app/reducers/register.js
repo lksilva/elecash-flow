@@ -16,7 +16,7 @@ const initialState = {
 export default function header(state: entity = initialState, action: actionType) {
   switch (action.type) {
     case HANDLE_SUBMIT: {
-      alert('Formulário enviado');
+      return state;
     }
     default:
       return state;

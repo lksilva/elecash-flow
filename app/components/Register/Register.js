@@ -5,6 +5,7 @@ import styles from './Register.css';
 import DatePicker from 'material-ui/DatePicker';
 import InputMask from 'react-input-mask';
 import Divider from 'material-ui/Divider';
+import { Field, reduxForm } from 'redux-form';
 
 const customStyle = {
   paddingDatePicker: {
@@ -54,39 +55,58 @@ const InstructForm = () => (
   </div>
 );
 
+const renderTextField = ({
+  input,
+  label,
+  type,
+}) =>
+  (<TextField
+    floatingLabelText={label}
+    {...input}
+    type={type}
+  />);
+
 class Register extends Component {
   tso: any;
   clientNumber: any;
+  submit: () => void;
   props: {
-    handleSubmit: () => void
+    handleSubmit: () => void,
+    register_form: object
   }
 
-  constructor(tso: any, clientNumber: any) {
+  constructor() {
     super();
-    this.tso = tso;
-    this.clientNumber = clientNumber;
+    this.submit = this.submit.bind(this);
   }
 
   formatDate(date) {
     return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
   }
 
+  submit(event) {
+    event.preventDefault();
+    console.log(this.props.register_form.values);
+    this.props.handleSubmit(this.props.register_form.values);
+  }
+
   render() {
-    const { handleSubmit } = this.props;
     return (
       <div>
         <h3 className={styles.center}>ORDEM DE SERVIÇO</h3>
-        <form className={styles.form} onSubmit={handleSubmit}>
+        <form className={styles.form} onSubmit={this.submit}>
           <div className={styles.card}>
-            <TextField
-              floatingLabelText="TSO"
-              type="number"
+            <Field
               name="tso"
-            />
-            <TextField
-              floatingLabelText="NÚMERO DO CLIENTE"
+              component={renderTextField}
+              label="TSO"
               type="number"
+            />
+            <Field
               name="clientNumber"
+              component={renderTextField}
+              label="NÚMERO DO CLIENTE"
+              type="number"
             />
             <DatePicker
               floatingLabelText="DATA"
@@ -175,4 +195,6 @@ class Register extends Component {
   }
 }
 
-export default Register;
+export default reduxForm({
+  form: 'Register'
+})(Register);
