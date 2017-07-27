@@ -71,6 +71,7 @@ class Register extends Component {
   clientNumber: any;
   submit: () => void;
   props: {
+    saveServiceOrder: () => void,
     handleSubmit: () => void,
     register_form: object
   }
@@ -84,17 +85,15 @@ class Register extends Component {
     return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
   }
 
-  submit(event) {
-    event.preventDefault();
-    console.log(this.props.register_form.values);
-    this.props.handleSubmit(this.props.register_form.values);
+  submit(payload: object) {
+    this.props.saveServiceOrder(payload);
   }
 
   render() {
     return (
       <div>
         <h3 className={styles.center}>ORDEM DE SERVIÇO</h3>
-        <form className={styles.form} onSubmit={this.submit}>
+        <form className={styles.form} onSubmit={this.props.handleSubmit(this.submit)}>
           <div className={styles.card}>
             <Field
               name="tso"

@@ -1,7 +1,7 @@
 // @flow
 export const HANDLE_SUBMIT = 'HANDLE_SUBMIT';
 
-export const handleSubmit = (values) => ({
+export const saveServiceOrder = (values) => ({
   type: HANDLE_SUBMIT,
   payload: values
 });
