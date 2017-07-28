@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 import styles from './Register.css';
 import InstructForm from './InstructForm';
+import LensInformation from './LensInformation';
 import DatePicker from 'material-ui/DatePicker';
 import InputMask from 'react-input-mask';
 import { Field, reduxForm } from 'redux-form';
@@ -189,6 +190,7 @@ class Register extends Component {
             <Field floatingLabelText="CELULAR" name="cell_phone" mask="(99) 999999999" component={renderMaskField} />
           </div>
           <InstructForm />
+          <LensInformation />
           <button type="submit">
             Submit
           </button>
