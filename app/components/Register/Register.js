@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
 import styles from './Register.css';
 import InstructForm from './InstructForm';
 import LensInformation from './LensInformation';
@@ -191,9 +192,7 @@ class Register extends Component {
           </div>
           <InstructForm />
           <LensInformation />
-          <button type="submit">
-            Submit
-          </button>
+          <RaisedButton type="submit" label="Salvar" primary style={customStyle.marginTop} />
         </form>
       </div>
     );
