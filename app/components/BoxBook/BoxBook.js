@@ -16,6 +16,13 @@ const styles = {
   propToggleHeader: {
     margin: '20px auto 10px',
   },
+  floatButton: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    position: 'relative',
+    bottom: '71px',
+    boxShadow: 'none',
+  }
 };
 
 const tableData = [
@@ -59,6 +66,10 @@ class BoxBook extends Component {
     });
   };
 
+  addBoxBook() {
+    console.log('Adicionar novo registro');
+  }
+
   render() {
     const date = new Date();
     const today = `${date.getMonth() + 1} / ${date.getFullYear()}`;
@@ -93,9 +104,6 @@ class BoxBook extends Component {
               </TableRow>
               ))}
           </TableBody>
-          {/* <FloatingActionButton mini>
-            <ContentAdd />
-          </FloatingActionButton> */}
           <TableFooter
             adjustForCheckbox={false}
           >
@@ -106,6 +114,9 @@ class BoxBook extends Component {
             </TableRow>
           </TableFooter>
         </Table>
+        <FloatingActionButton mini style={styles.floatButton} onClick={this.addBoxBook}>
+          <ContentAdd />
+        </FloatingActionButton>
       </div>
     );
   }
