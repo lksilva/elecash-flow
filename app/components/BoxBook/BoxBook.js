@@ -6,6 +6,8 @@ import TextField from 'material-ui/TextField';
 import Toggle from 'material-ui/Toggle';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
+import ContentRemove from 'material-ui/svg-icons/content/clear';
+import Input from './Input';
 
 const styles = {
   propContainer: {
@@ -58,21 +60,30 @@ const tableData = [
   },
 ];
 
-class BoxBook extends Component {
+type State = {
+  showInput: boolean
+};
 
-  handleToggle = (event, toggled) => {
-    this.setState({
-      [event.target.name]: toggled,
-    });
-  };
+class BoxBook extends Component<void, Props, State> {
+  state: State;
+  handleInput: Function;
 
-  addBoxBook() {
-    console.log('Adicionar novo registro');
+  constructor() {
+    super();
+    this.state = {
+      showInput: false,
+    };
+    this.handleInput = this.handleInput.bind(this);
+  }
+
+  handleInput() {
+    this.setState({ showInput: !this.state.showInput });
   }
 
   render() {
     const date = new Date();
     const today = `${date.getMonth() + 1} / ${date.getFullYear()}`;
+    console.log(this.state.showInput);
     return (
       <div>
         <Table
@@ -85,14 +96,16 @@ class BoxBook extends Component {
             enableSelectAll={false}
           >
             <TableRow>
-              <TableHeaderColumn colSpan="3" style={{ textAlign: 'center' }}>
+              <TableHeaderColumn colSpan="5" style={{ textAlign: 'center' }}>
                 {`Livro caixa do mês ${today}`}
               </TableHeaderColumn>
             </TableRow>
             <TableRow>
-              <TableHeaderColumn tooltip="The ID">ID</TableHeaderColumn>
-              <TableHeaderColumn tooltip="The Name">Name</TableHeaderColumn>
-              <TableHeaderColumn tooltip="The Status">Status</TableHeaderColumn>
+              <TableHeaderColumn tooltip="Data">Data</TableHeaderColumn>
+              <TableHeaderColumn tooltip="Descrição">Descrição</TableHeaderColumn>
+              <TableHeaderColumn tooltip="Entrada">Entrada</TableHeaderColumn>
+              <TableHeaderColumn tooltip="Saída">Saída</TableHeaderColumn>
+              <TableHeaderColumn tooltip="Saldo">Saldo</TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false}>
@@ -101,8 +114,12 @@ class BoxBook extends Component {
                 <TableRowColumn>{index}</TableRowColumn>
                 <TableRowColumn>{row.name}</TableRowColumn>
                 <TableRowColumn>{row.status}</TableRowColumn>
+                <TableRowColumn>{row.name}</TableRowColumn>
+                <TableRowColumn>{row.status}</TableRowColumn>
               </TableRow>
               ))}
+            {this.state.showInput &&
+              <Input />}
           </TableBody>
           <TableFooter
             adjustForCheckbox={false}
@@ -114,8 +131,8 @@ class BoxBook extends Component {
             </TableRow>
           </TableFooter>
         </Table>
-        <FloatingActionButton mini style={styles.floatButton} onClick={this.addBoxBook}>
-          <ContentAdd />
+        <FloatingActionButton mini style={styles.floatButton} onClick={this.handleInput}>
+          {!this.state.showInput ? <ContentAdd /> : <ContentRemove />}
         </FloatingActionButton>
       </div>
     );
