@@ -8,8 +8,18 @@ import './app.global.css';
 // import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { darkBlack, grey300, fullBlack } from 'material-ui/styles/colors';
-import {fade} from 'material-ui/utils/colorManipulator';
+import { fade } from 'material-ui/utils/colorManipulator';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+
+// global.Intl = require('intl');
+
+// global.Intl = require.ensure([
+//   'intl',
+//   'intl/locale-data/jsonp/br.js'
+// ], (require) => {
+//   require('intl');
+//   require('intl/locale-data/jsonp/br.js');
+// });
 
 injectTapEventPlugin();
 

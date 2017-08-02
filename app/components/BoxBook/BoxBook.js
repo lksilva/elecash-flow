@@ -83,7 +83,6 @@ class BoxBook extends Component<void, Props, State> {
   render() {
     const date = new Date();
     const today = `${date.getMonth() + 1} / ${date.getFullYear()}`;
-    console.log(this.state.showInput);
     return (
       <div>
         <Table
