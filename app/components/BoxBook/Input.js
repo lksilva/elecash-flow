@@ -54,7 +54,8 @@ class Input extends Component <void, Props, State> {
   sendBoxBook: Function;
 
   props: {
-    handleInput: () => void
+    handleInput: () => void,
+    handleSubmit: () => void
   }
 
   constructor() {
@@ -65,8 +66,8 @@ class Input extends Component <void, Props, State> {
     this.sendBoxBook = this.sendBoxBook.bind(this);
   }
 
-  sendBoxBook() {
-    this.props.handleInput();
+  sendBoxBook(payload: object) {
+    this.props.handleInput(payload);
   }
 
   render() {
@@ -109,7 +110,7 @@ class Input extends Component <void, Props, State> {
           </TableRowColumn>
           <TableRowColumn>
             <RaisedButton
-              onClick={this.sendBoxBook}
+              onClick={this.props.handleSubmit(this.sendBoxBook)}
               backgroundColor="#a4c639"
               icon={<ActionAndroid color={fullWhite} />}
               style={style}

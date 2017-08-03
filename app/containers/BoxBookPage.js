@@ -5,7 +5,7 @@ import * as BoxBookActions from '../actions/boxbook';
 
 function mapStateToProps(state) {
   return {
-    boxbook: state.boxbook.boxBooks
+    boxBooks: state.boxbook.boxBooks
   };
 }
 

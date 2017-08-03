@@ -75,7 +75,8 @@ class BoxBook extends Component<void, Props, State> {
     this.handleInput = this.handleInput.bind(this);
   }
 
-  handleInput() {
+  handleInput(payload: object) {
+    this.props.saveBoxBook(payload);
     this.setState({ showInput: !this.state.showInput });
   }
 
