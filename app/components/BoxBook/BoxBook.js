@@ -21,7 +21,7 @@ const styles = {
     display: 'flex',
     justifyContent: 'flex-end',
     position: 'relative',
-    bottom: '71px',
+    bottom: '20px',
     boxShadow: 'none',
   }
 };
@@ -82,14 +82,14 @@ class BoxBook extends Component<void, Props, State> {
                 <TableRowColumn>{row.description}</TableRowColumn>
                 <TableRowColumn>{row.input}</TableRowColumn>
                 <TableRowColumn>{row.output}</TableRowColumn>
-                <TableRowColumn>{row.output}</TableRowColumn>
+                <TableRowColumn>{row.balance}</TableRowColumn>
               </TableRow>
               ))}
             {this.state.showInput &&
               <Input handleInput={this.handleInput} />
             }
           </TableBody>
-          <TableFooter
+          {/* <TableFooter
             adjustForCheckbox={false}
           >
             <TableRow>
@@ -97,7 +97,7 @@ class BoxBook extends Component<void, Props, State> {
               <TableRowColumn>Name</TableRowColumn>
               <TableRowColumn>Status</TableRowColumn>
             </TableRow>
-          </TableFooter>
+          </TableFooter> */}
         </Table>
         {!this.state.showInput &&
           <FloatingActionButton mini style={styles.floatButton} onClick={this.handleInput}>

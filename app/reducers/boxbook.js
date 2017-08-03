@@ -60,16 +60,27 @@ export default function handleBoxBooks(state: boxBooks = initialState, action: a
   switch (action.type) {
     case HANDLE_SUBMIT_BOXBOOK: {
       if (action.payload.isData) {
-        let item = action.payload;
+        const item = action.payload;
         item.dateBoxBook = item.dateBoxBook.toLocaleString('pt-br').slice(0, 10);
         const list = [...state.boxBooks, item];
         return Object.assign({}, state, {
-          boxBooks: list
+          boxBooks: getBalanceList(list)
         });
       }
       return state;
     }
     default:
-      return state;
+      return Object.assign({}, state, {
+        boxBooks: getBalanceList(state.boxBooks)
+      });
   }
+}
+
+function getBalanceList(list) {
+  let balance = 0;
+  return list.map(item => {
+    balance += item.input - item.output;
+    item.balance = balance;
+    return item;
+  });
 }

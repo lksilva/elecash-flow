@@ -8,7 +8,6 @@ import DatePicker from 'material-ui/DatePicker';
 import RaisedButton from 'material-ui/RaisedButton';
 import { fullWhite } from 'material-ui/styles/colors';
 import ActionOK from 'material-ui/svg-icons/action/done';
-import Dialog from 'material-ui/Dialog';
 
 export const fields = ['description', 'dateBoxBook'];
 
