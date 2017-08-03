@@ -8,6 +8,7 @@ import * as counterActions from '../actions/counter';
 import type { counterStateType } from '../reducers/counter';
 import * as headerActions from '../actions/header';
 import * as registerActions from '../actions/register';
+import * as boxBookActions from '../actions/boxbook';
 
 const history = createHashHistory();
 
@@ -36,6 +37,7 @@ const configureStore = (initialState?: counterStateType) => {
     ...headerActions,
     ...routerActions,
     ...registerActions,
+    ...boxBookActions,
   };
   // If Redux DevTools Extension is installed use it, otherwise use Redux compose
   /* eslint-disable no-underscore-dangle */

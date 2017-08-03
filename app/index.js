@@ -11,24 +11,14 @@ import { darkBlack, grey300, fullBlack } from 'material-ui/styles/colors';
 import { fade } from 'material-ui/utils/colorManipulator';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
-// global.Intl = require('intl');
-
-// global.Intl = require.ensure([
-//   'intl',
-//   'intl/locale-data/jsonp/br.js'
-// ], (require) => {
-//   require('intl');
-//   require('intl/locale-data/jsonp/br.js');
-// });
-
 injectTapEventPlugin();
 
 const store = configureStore();
 
 const muiTheme = getMuiTheme({
   // palette: {
-  //   // textColor: darkBlack,
-  //   // disabledColor: '#789fdc'
+  //   textColor: darkBlack,
+  //   disabledColor: '#789fdc'
   //   primary1Color: '#37474f',
   //   primary2Color: '#62727b',
   //   primary3Color: '#102027',

@@ -13,7 +13,7 @@ const initialState = {
   entity: {}
 };
 
-export default function header(state: entity = initialState, action: actionType) {
+export default function register(state: entity = initialState, action: actionType) {
   switch (action.type) {
     case HANDLE_SUBMIT: {
       return state;

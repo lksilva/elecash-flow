@@ -1,13 +1,16 @@
-// @flow
-import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import BoxBook from '../components/BoxBook/BoxBook';
+import * as BoxBookActions from '../actions/boxbook';
 
-class BoxBookPage extends Component {
-  render() {
-    return (
-      <BoxBook />
-    );
-  }
+function mapStateToProps(state) {
+  return {
+    boxbook: state.boxbook.boxBooks
+  };
 }
 
-export default BoxBookPage;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(BoxBookActions, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BoxBook);

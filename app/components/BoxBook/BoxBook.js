@@ -6,7 +6,6 @@ import TextField from 'material-ui/TextField';
 import Toggle from 'material-ui/Toggle';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import ContentRemove from 'material-ui/svg-icons/content/clear';
 import Input from './Input';
 
 const styles = {
@@ -118,7 +117,8 @@ class BoxBook extends Component<void, Props, State> {
               </TableRow>
               ))}
             {this.state.showInput &&
-              <Input />}
+              <Input handleInput={this.handleInput} />
+            }
           </TableBody>
           <TableFooter
             adjustForCheckbox={false}
@@ -130,9 +130,11 @@ class BoxBook extends Component<void, Props, State> {
             </TableRow>
           </TableFooter>
         </Table>
-        <FloatingActionButton mini style={styles.floatButton} onClick={this.handleInput}>
-          {!this.state.showInput ? <ContentAdd /> : <ContentRemove />}
-        </FloatingActionButton>
+        {!this.state.showInput &&
+          <FloatingActionButton mini style={styles.floatButton} onClick={this.handleInput}>
+            <ContentAdd />
+          </FloatingActionButton>
+        }
       </div>
     );
   }

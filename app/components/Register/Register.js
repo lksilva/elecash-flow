@@ -60,20 +60,27 @@ const stylezedTextField = ({
   />
 );
 
+const DateTimeFormat = global.Intl.DateTimeFormat;
+
+const formatDate = date => Intl.DateTimeFormat('PT-BR').format(date);
+
 const renderDatePicker = ({
   input,
   floatingLabelText,
   hintText,
   container,
 }) => (
+
   <DatePicker
-    floatingLabelText={floatingLabelText}
     hintText={hintText}
     container={container}
-    {...input}
-    value={input.value !== '' ? new Date(input.value) : null}
-    onChange={(event, value) => { input.onChange(value); }}
-    formatDate={(date) => `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`}
+    DateTimeFormat={DateTimeFormat}
+    formatDate={formatDate}
+    floatingLabelText={floatingLabelText}
+    okLabel="OK"
+    cancelLabel="Cancelar"
+    locale="pt-br"
+    onChange={(event, value) => input.onChange(value)}
   />
 );
 
