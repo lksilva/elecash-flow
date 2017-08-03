@@ -7,7 +7,10 @@ import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
 import RaisedButton from 'material-ui/RaisedButton';
 import { fullWhite } from 'material-ui/styles/colors';
-import ActionAndroid from 'material-ui/svg-icons/action/done';
+import ActionOK from 'material-ui/svg-icons/action/done';
+import Dialog from 'material-ui/Dialog';
+
+export const fields = ['description', 'dateBoxBook'];
 
 const style = {
   margin: 12,
@@ -39,6 +42,17 @@ const renderDatePicker = ({
   />
 );
 
+const validate = values => {
+  const errors = {};
+  if (!values.dateBoxBook) {
+    errors.dateBoxBook = 'Data obrigatória';
+  }
+  if (!values.description) {
+    errors.description = 'Descrição obrigatória';
+  }
+  return errors;
+};
+
 const renderTextField = ({
   input,
   floatingLabelText,
@@ -61,68 +75,70 @@ class Input extends Component <void, Props, State> {
   constructor() {
     super();
     this.state = {
-      showInput: false,
+      open: false,
     };
     this.sendBoxBook = this.sendBoxBook.bind(this);
   }
 
   sendBoxBook(payload: object) {
+    payload.isData = true;
     this.props.handleInput(payload);
   }
 
   render() {
     return (
-        <TableRow>
-          <TableRowColumn>
-            <Field
-              name="dateBoxBook"
-              floatingLabelText="DATA"
-              hintText="DATA"
-              container="inline"
-              component={renderDatePicker}
-            />
-          </TableRowColumn>
-          <TableRowColumn>
-            <Field
-              name="description"
-              floatingLabelText="DESCRIÇÃO"
-              component={renderTextField}
-              normalize={upper}
-              type="text"
-            />
-          </TableRowColumn>
-          <TableRowColumn>
-            <Field
-              name="input"
-              floatingLabelText="ENTRADA"
-              component={renderTextField}
-              normalize={upper}
-              type="number"
-            />
-          </TableRowColumn>
-          <TableRowColumn>
-            <Field
-              name="output"
-              floatingLabelText="SAÍDA"
-              component={renderTextField}
-              type="number"
-            />
-          </TableRowColumn>
-          <TableRowColumn>
-            <RaisedButton
-              onClick={this.props.handleSubmit(this.sendBoxBook)}
-              backgroundColor="#a4c639"
-              icon={<ActionAndroid color={fullWhite} />}
-              style={style}
-            />
-          </TableRowColumn>
-        </TableRow>
+      <TableRow>
+        <TableRowColumn>
+          <Field
+            name="dateBoxBook"
+            floatingLabelText="DATA"
+            hintText="DATA"
+            container="inline"
+            component={renderDatePicker}
+          />
+        </TableRowColumn>
+        <TableRowColumn>
+          <Field
+            name="description"
+            floatingLabelText="DESCRIÇÃO"
+            component={renderTextField}
+            normalize={upper}
+            type="text"
+          />
+        </TableRowColumn>
+        <TableRowColumn>
+          <Field
+            name="input"
+            floatingLabelText="ENTRADA"
+            component={renderTextField}
+            normalize={upper}
+            type="number"
+          />
+        </TableRowColumn>
+        <TableRowColumn>
+          <Field
+            name="output"
+            floatingLabelText="SAÍDA"
+            component={renderTextField}
+            type="number"
+          />
+        </TableRowColumn>
+        <TableRowColumn>
+          <RaisedButton
+            onClick={this.props.handleSubmit(this.sendBoxBook)}
+            backgroundColor="#a4c639"
+            icon={<ActionOK color={fullWhite} />}
+            style={style}
+          />
+        </TableRowColumn>
+      </TableRow>
     );
   }
 
 }
 
 export default reduxForm({
-  form: 'RegisterBoxBook'
+  form: 'RegisterBoxBook',
+  validate,
 })(Input);
 

@@ -26,39 +26,6 @@ const styles = {
   }
 };
 
-const tableData = [
-  {
-    name: 'John Smith',
-    status: 'Employed',
-    selected: true,
-  },
-  {
-    name: 'Randal White',
-    status: 'Unemployed',
-  },
-  {
-    name: 'Stephanie Sanders',
-    status: 'Employed',
-    selected: true,
-  },
-  {
-    name: 'Steve Brown',
-    status: 'Employed',
-  },
-  {
-    name: 'Joyce Whitten',
-    status: 'Employed',
-  },
-  {
-    name: 'Samuel Roberts',
-    status: 'Employed',
-  },
-  {
-    name: 'Adam Moore',
-    status: 'Employed',
-  },
-];
-
 type State = {
   showInput: boolean
 };
@@ -83,6 +50,7 @@ class BoxBook extends Component<void, Props, State> {
   render() {
     const date = new Date();
     const today = `${date.getMonth() + 1} / ${date.getFullYear()}`;
+    const { boxBooks } = this.props;
     return (
       <div>
         <Table
@@ -108,13 +76,13 @@ class BoxBook extends Component<void, Props, State> {
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false}>
-            {tableData.map((row, index) => (
-              <TableRow key={index} selected={row.selected}>
-                <TableRowColumn>{index}</TableRowColumn>
-                <TableRowColumn>{row.name}</TableRowColumn>
-                <TableRowColumn>{row.status}</TableRowColumn>
-                <TableRowColumn>{row.name}</TableRowColumn>
-                <TableRowColumn>{row.status}</TableRowColumn>
+            {boxBooks.map((row, index) => (
+              <TableRow key={index}>
+                <TableRowColumn>{row.dateBoxBook}</TableRowColumn>
+                <TableRowColumn>{row.description}</TableRowColumn>
+                <TableRowColumn>{row.input}</TableRowColumn>
+                <TableRowColumn>{row.output}</TableRowColumn>
+                <TableRowColumn>{row.output}</TableRowColumn>
               </TableRow>
               ))}
             {this.state.showInput &&
