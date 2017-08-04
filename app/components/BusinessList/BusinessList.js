@@ -1,9 +1,11 @@
 // @flow
 import React, { Component } from 'react';
-import {Tabs, Tab} from 'material-ui/Tabs';
+import { Tabs, Tab } from 'material-ui/Tabs';
 // From https://github.com/oliviertassinari/react-swipeable-views
 import SwipeableViews from 'react-swipeable-views';
 import styles from './BusinessList.css';
+import RegisterBusiness from './RegisterBusiness';
+import List from './List';
 
 type State = {
   slideIndex: number
@@ -41,13 +43,8 @@ class BusinessList extends Component<void, Props, State> {
           index={this.state.slideIndex}
           onChangeIndex={this.handleChange}
         >
-          <div>
-            <h2>Tabs with slide effect</h2>
-            Swipe to see the next slide.<br />
-          </div>
-          <div>
-            slide n°2
-          </div>
+          <List />
+          <RegisterBusiness />
         </SwipeableViews>
       </div>
     );

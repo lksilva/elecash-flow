@@ -34,6 +34,11 @@ const muiTheme = getMuiTheme({
   //   clockCircleColor: fade(darkBlack, 0.07),
   //   shadowColor: fullBlack,
   // },
+  palette: {
+    primary1Color: '#32435c',
+    accent1Color: '#5cfaac',
+    alternateTextColor: '#d1dff5',
+  },
   fontFamily: 'Roboto, sans-serif',
 });
 

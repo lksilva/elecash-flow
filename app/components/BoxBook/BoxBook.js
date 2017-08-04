@@ -89,15 +89,6 @@ class BoxBook extends Component<void, Props, State> {
               <Input handleInput={this.handleInput} />
             }
           </TableBody>
-          {/* <TableFooter
-            adjustForCheckbox={false}
-          >
-            <TableRow>
-              <TableRowColumn>ID</TableRowColumn>
-              <TableRowColumn>Name</TableRowColumn>
-              <TableRowColumn>Status</TableRowColumn>
-            </TableRow>
-          </TableFooter> */}
         </Table>
         {!this.state.showInput &&
           <FloatingActionButton mini style={styles.floatButton} onClick={this.handleInput}>
