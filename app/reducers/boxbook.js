@@ -12,43 +12,43 @@ type actionType = {
 const initialState = {
   boxBooks: [
     {
-      dateBoxBook: '14/08/2017',
+      dateBoxBook: '2017-08-14T03:00:00.000Z',
       description: 'DESCRIPTION',
       input: 121,
       output: 2143,
     },
     {
-      dateBoxBook: '14/08/2017',
+      dateBoxBook: '2017-08-14T03:00:00.000Z',
       description: 'DESCRIPTION',
       input: 121,
       output: 2143,
     },
     {
-      dateBoxBook: '14/08/2017',
+      dateBoxBook: '2017-08-14T03:00:00.000Z',
       description: 'DESCRIPTION',
       input: 121,
       output: 2143,
     },
     {
-      dateBoxBook: '14/08/2017',
+      dateBoxBook: '2017-08-14T03:00:00.000Z',
       description: 'DESCRIPTION',
       input: 121,
       output: 2143,
     },
     {
-      dateBoxBook: '14/08/2017',
+      dateBoxBook: '2017-08-30T03:00:00.000Z',
       description: 'DESCRIPTION',
       input: 121,
       output: 2143,
     },
     {
-      dateBoxBook: '14/08/2017',
+      dateBoxBook: '2017-08-30T03:00:00.000Z',
       description: 'DESCRIPTION',
       input: 121,
       output: 2143,
     },
     {
-      dateBoxBook: '14/08/2017',
+      dateBoxBook: '2017-08-30T03:00:00.000Z',
       description: 'DESCRIPTION',
       input: 121,
       output: 2143,
@@ -61,7 +61,6 @@ export default function handleBoxBooks(state: boxBooks = initialState, action: a
     case HANDLE_SUBMIT_BOXBOOK: {
       if (action.payload.isData) {
         const item = action.payload;
-        item.dateBoxBook = item.dateBoxBook.toLocaleString('pt-br').slice(0, 10);
         const list = [...state.boxBooks, item];
         return Object.assign({}, state, {
           boxBooks: getBalanceList(list)

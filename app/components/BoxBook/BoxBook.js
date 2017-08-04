@@ -78,7 +78,7 @@ class BoxBook extends Component<void, Props, State> {
           <TableBody displayRowCheckbox={false}>
             {boxBooks.map((row, index) => (
               <TableRow key={index}>
-                <TableRowColumn>{row.dateBoxBook}</TableRowColumn>
+                <TableRowColumn>{row.dateBoxBook.toLocaleString('pt-br').slice(0, 10)}</TableRowColumn>
                 <TableRowColumn>{row.description}</TableRowColumn>
                 <TableRowColumn>{row.input}</TableRowColumn>
                 <TableRowColumn>{row.output}</TableRowColumn>
