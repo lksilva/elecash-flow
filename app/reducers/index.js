@@ -5,6 +5,8 @@ import counter from './counter';
 import header from './header';
 import register from './register';
 import boxbook from './boxbook';
+import business from './business';
+
 import { reducer as reduxFormReducer } from 'redux-form';
 
 const rootReducer = combineReducers({
@@ -13,6 +15,7 @@ const rootReducer = combineReducers({
   header,
   register,
   boxbook,
+  business,
   form: reduxFormReducer,
 });
 
