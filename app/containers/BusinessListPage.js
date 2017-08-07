@@ -6,8 +6,8 @@ import * as BusinessActions from '../actions/business';
 
 function mapStateToProps(state) {
   return {
-    business: state.registerBusiness.business
-  }
+    business: state.business.business
+  };
 }
 
 function mapDispatchToProps(dispatch) {

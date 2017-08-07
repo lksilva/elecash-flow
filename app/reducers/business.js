@@ -16,6 +16,7 @@ const initialState = {
 export default function registerBusiness(state: business = initialState, action: actionType) {
   switch (action.type) {
     case HANDLE_SUBMIT_BUSINESS: {
+      console.log(action.payload);
       return state;
     }
     default:

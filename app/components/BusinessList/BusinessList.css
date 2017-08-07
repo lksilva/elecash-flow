@@ -3,3 +3,10 @@
   box-shadow: 0 4px 12px rgba(0,0,0,.175);
   margin: 5px;
 }
+
+.form {
+  margin: 15px auto;
+  max-width: 500px;
+  box-shadow: 0 8px 12px rgba(0,0,0,.175);
+  background: #f5f5f6;
+}

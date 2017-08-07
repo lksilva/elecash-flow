@@ -44,7 +44,7 @@ class BusinessList extends Component<void, Props, State> {
           onChangeIndex={this.handleChange}
         >
           <List />
-          <RegisterBusiness />
+          <RegisterBusiness saveBusiness={this.props.saveBusiness} />
         </SwipeableViews>
       </div>
     );
