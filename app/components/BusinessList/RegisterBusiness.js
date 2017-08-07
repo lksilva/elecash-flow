@@ -60,6 +60,23 @@ const customStyle = {
   },
 };
 
+const validate = values => {
+  const errors = {};
+  if (!values.clientName) {
+    errors.clientName = 'Nome do cliente é obrigatório';
+  }
+  if (!values.typePayment) {
+    errors.typePayment = 'Tipo de pagamento é obrigatório';
+  }
+  if (!values.billingDate) {
+    errors.billingDate = 'Dia do pagamento é obrigatório';
+  }
+  if (!values.price) {
+    errors.price = 'Preço da venda é obritório';
+  }
+  return errors;
+};
+
 class RegisterBusiness extends Component {
   submit: () => void;
 
@@ -108,14 +125,14 @@ class RegisterBusiness extends Component {
           component={renderTextField}
         />
         <Field
-          name="dateRB"
+          name="billingDate"
           floatingLabelText="DATA DO PAGAMENTO"
           hintText="DATA"
           container="inline"
           component={renderDatePicker}
         />
         <Field
-          name="dateRB"
+          name="paidDate"
           floatingLabelText="DIA DO PAGAMENTO"
           hintText="DATA"
           container="inline"
@@ -128,5 +145,6 @@ class RegisterBusiness extends Component {
 }
 
 export default reduxForm({
-  form: 'RegisterBusiness'
+  form: 'RegisterBusiness',
+  validate
 })(RegisterBusiness);

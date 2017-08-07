@@ -84,6 +84,21 @@ const renderDatePicker = ({
   />
 );
 
+
+const validate = values => {
+  const errors = {};
+  if (!values.tso) {
+    errors.tso = 'Numero TSO é obrigatório';
+  }
+  if (!values.name) {
+    errors.name = 'Nome do cliente é obrigatório';
+  }
+  if (!values.dateUser) {
+    errors.dateUser = 'Data é obrigatória';
+  }
+  return errors;
+};
+
 class Register extends Component {
   tso: any;
   clientNumber: any;
@@ -207,5 +222,6 @@ class Register extends Component {
 }
 
 export default reduxForm({
-  form: 'Register'
+  form: 'Register',
+  validate
 })(Register);
