@@ -56,6 +56,7 @@ class BoxBook extends Component<void, Props, State> {
         <Table
           fixedHeader
           fixedFooter
+          selectable={false}
         >
           <TableHeader
             displaySelectAll={false}

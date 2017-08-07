@@ -1,12 +1,24 @@
 import React, { Component } from 'react';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn }
   from 'material-ui/Table';
-import ActionOK from 'material-ui/svg-icons/action/done';
+import ActionOK from 'material-ui/svg-icons/action/get-app';
+import RaisedButton from 'material-ui/RaisedButton';
+import { fullWhite } from 'material-ui/styles/colors';
 
-class List extends Component {
+class List extends Component<void, Props, State> {
 
   props: {
-    business: Array
+    business: Array,
+    payOff: Function
+  }
+
+  constructor() {
+    super();
+    this.send = this.send.bind(this);
+  }
+
+  send(id) {
+    this.props.payOff(id);
   }
 
   render() {
@@ -14,6 +26,7 @@ class List extends Component {
       <Table
         fixedHeader
         fixedFooter
+        selectable={false}
       >
         <TableHeader
           displaySelectAll={false}
@@ -27,11 +40,11 @@ class List extends Component {
           </TableRow>
           <TableRow>
             <TableHeaderColumn tooltip="Data">Data</TableHeaderColumn>
-            <TableHeaderColumn tooltip="Descrição">Cliente</TableHeaderColumn>
-            <TableHeaderColumn tooltip="Entrada">Tipo de Pagamento</TableHeaderColumn>
-            <TableHeaderColumn tooltip="Saída">Valor</TableHeaderColumn>
-            <TableHeaderColumn tooltip="Saída">Data do Pagamento</TableHeaderColumn>
-            <TableHeaderColumn tooltip="Saldo">Dia do Pagamento</TableHeaderColumn>
+            <TableHeaderColumn tooltip="Cliente">Cliente</TableHeaderColumn>
+            <TableHeaderColumn tooltip="Tipo de Pagamento">Tipo de Pagamento</TableHeaderColumn>
+            <TableHeaderColumn tooltip="Valor">Valor</TableHeaderColumn>
+            <TableHeaderColumn tooltip="Data do Pagamento">Data do Pagamento</TableHeaderColumn>
+            <TableHeaderColumn tooltip="Dia do Pagamento">Dia do Pagamento</TableHeaderColumn>
           </TableRow>
         </TableHeader>
         <TableBody displayRowCheckbox={false}>
@@ -42,7 +55,15 @@ class List extends Component {
               <TableRowColumn>{row.typePayment}</TableRowColumn>
               <TableRowColumn>{row.price}</TableRowColumn>
               <TableRowColumn>{row.billingDate.toLocaleString('pt-br').slice(0, 10)}</TableRowColumn>
-              <TableRowColumn>{row.paidDate.toLocaleString('pt-br').slice(0, 10)}</TableRowColumn>
+              <TableRowColumn>{ row.paidDate ? row.paidDate.toLocaleString('pt-br').slice(0, 10) :
+              <RaisedButton
+                onClick={() => this.send(row.id)}
+                backgroundColor="#a4c639"
+                icon={<ActionOK color={fullWhite} />}
+                label="Pagar"
+                labelColor={fullWhite}
+              />
+              }</TableRowColumn>
             </TableRow>
               ))}
         </TableBody>

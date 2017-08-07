@@ -36,7 +36,7 @@ const muiTheme = getMuiTheme({
   // },
   palette: {
     primary1Color: '#32435c',
-    accent1Color: '#5cfaac',
+    accent1Color: 'rgba(255, 14, 14, 0.992157)',
     alternateTextColor: '#d1dff5',
   },
   fontFamily: 'Roboto, sans-serif',

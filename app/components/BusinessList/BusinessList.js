@@ -21,12 +21,17 @@ class BusinessList extends Component<void, Props, State> {
       slideIndex: 0,
     };
     this.handleChange = this.handleChange.bind(this);
+    this.payOff = this.payOff.bind(this);
   }
 
   handleChange(value: number) {
     this.setState({
       slideIndex: value,
     });
+  }
+
+  payOff(id: number) {
+    this.props.payOff(id);
   }
 
   render() {
@@ -43,7 +48,7 @@ class BusinessList extends Component<void, Props, State> {
           index={this.state.slideIndex}
           onChangeIndex={this.handleChange}
         >
-          <List business={this.props.business} />
+          <List business={this.props.business} payOff={this.payOff} />
           <RegisterBusiness saveBusiness={this.props.saveBusiness} />
         </SwipeableViews>
       </div>
