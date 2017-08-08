@@ -1,5 +1,8 @@
 // @flow
-import { HANDLE_SUBMIT_BUSINESS, PAY } from '../actions/business';
+import { HANDLE_SUBMIT_BUSINESS, PAY, LIST_BUSINESS } from '../actions/business';
+import { remote } from 'electron';
+
+const db = remote.getGlobal('db');
 
 export type businessStateType = {
   +business: object
@@ -10,43 +13,7 @@ type actionType = {
 };
 
 const initialState = {
-  business: [
-    { id: 1,
-      clientName: 'LUCAS SILVA SOUZA',
-      dateRB: '2017-08-16T03:00:00.000Z',
-      price: '12',
-      billingDate: '2017-08-30T03:00:00.000Z',
-      paidDate: '2017-08-12T03:00:00.000Z',
-      typePayment: 'DINHEIRO' },
-    { id: 2,
-      clientName: 'LUCAS SILVA SOUZA',
-      dateRB: '2017-08-16T03:00:00.000Z',
-      price: '12',
-      billingDate: '2017-08-30T03:00:00.000Z',
-      paidDate: '2017-08-12T03:00:00.000Z',
-      typePayment: 'DINHEIRO' },
-    { id: 3,
-      clientName: 'LUCAS SILVA SOUZA',
-      dateRB: '2017-08-16T03:00:00.000Z',
-      price: '12',
-      billingDate: '2017-08-30T03:00:00.000Z',
-      paidDate: '2017-08-12T03:00:00.000Z',
-      typePayment: 'DINHEIRO' },
-    { id: 4,
-      clientName: 'LUCAS SILVA SOUZA',
-      dateRB: '2017-08-16T03:00:00.000Z',
-      price: '12',
-      billingDate: '2017-08-30T03:00:00.000Z',
-      paidDate: '',
-      typePayment: 'DINHEIRO' },
-    { id: 5,
-      clientName: 'LUCAS SILVA SOUZA',
-      dateRB: '2017-08-16T03:00:00.000Z',
-      price: '12',
-      billingDate: '2017-08-30T03:00:00.000Z',
-      paidDate: '2017-08-12T03:00:00.000Z',
-      typePayment: 'DINHEIRO' }
-  ]
+  business: []
 };
 
 export default function registerBusiness(state: business = initialState, action: actionType) {
@@ -54,6 +21,7 @@ export default function registerBusiness(state: business = initialState, action:
     case HANDLE_SUBMIT_BUSINESS: {
       const item = action.payload;
       const list = [...state.business, item];
+      insertBusiness(item);
       return Object.assign({}, state, {
         business: list
       });
@@ -65,13 +33,22 @@ export default function registerBusiness(state: business = initialState, action:
         }
         return b;
       });
-
-      console.log(list);
       return Object.assign({}, state, {
         business: list
+      });
+    }
+    case LIST_BUSINESS: {
+      return Object.assign({}, state, {
+        business: action.payload
       });
     }
     default:
       return state;
   }
+}
+
+function insertBusiness(item) {
+  db.collection('business').insertOne({ item }, (err, result) => {
+    console.log('Inserido um novo negócio', item);
+  });
 }

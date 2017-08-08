@@ -6,7 +6,11 @@ import SwipeableViews from 'react-swipeable-views';
 import styles from './BusinessList.css';
 import RegisterBusiness from './RegisterBusiness';
 import List from './List';
+import {remote} from 'electron';
 
+
+// var something = remote.getGlobal('url');
+// console.info('Somehewbdoue ', something);
 type State = {
   slideIndex: number
 };
@@ -22,6 +26,10 @@ class BusinessList extends Component<void, Props, State> {
     };
     this.handleChange = this.handleChange.bind(this);
     this.payOff = this.payOff.bind(this);
+  }
+
+  componentWillMount() {
+    this.props.getBusinessList();
   }
 
   handleChange(value: number) {
