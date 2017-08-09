@@ -13,7 +13,7 @@
 //   });
 //   // TBD: Handle errors
 // }
-export const HANDLE_SUBMIT_BUSINESS = 'HANDLE_SUBMIT_BUSINESS';
+// export const HANDLE_SUBMIT_BUSINESS = 'HANDLE_SUBMIT_BUSINESS';
 export const PAY = 'PAY';
 export const LIST_BUSINESS = 'LIST_BUSINESS';
 
@@ -21,10 +21,9 @@ import { remote } from 'electron';
 
 const db = remote.getGlobal('db');
 
-export const saveBusiness = (values) => ({
-  type: HANDLE_SUBMIT_BUSINESS,
-  payload: values
-});
+type actionType = {
+  +type: string
+};
 
 export const payOff = (value) => ({
   type: PAY,
@@ -39,10 +38,15 @@ export const populate = (list) => ({
 export function getBusinessList() {
   return (dispatch: (action: actionType) => void) => {
     db.collection('business').find().toArray((err, businessList) => {
-      dispatch(populate(businessList.map(register => register.item)));
+      dispatch(populate(businessList.map(register => register)));
     });
   };
 }
-// } ({
-//   type: LIST_BUSINESS,
-// });
+
+export function saveBusiness(item) {
+  return (dispatch: (action: actionType) => void) => {
+    db.collection('business').insertOne({ item }, () => {
+      dispatch(getBusinessList());
+    });
+  };
+}
