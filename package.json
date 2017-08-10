@@ -1,8 +1,8 @@
 {
-  "name": "electron-react-boilerplate",
-  "productName": "ElectronReact",
+  "name": "troncash",
+  "productName": "Troncash",
   "version": "0.12.0",
-  "description": "Electron application boilerplate based on React, React Router, Webpack, React Hot Loader for rapid application development",
+  "description": "Programa de controle de caixa",
   "scripts": {
     "build": "concurrently \"npm run build-main\" \"npm run build-renderer\"",
     "build-dll": "cross-env NODE_ENV=development node --trace-warnings -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.renderer.dev.dll.js --colors",
@@ -29,12 +29,12 @@
     "test-e2e": "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 node --trace-warnings ./test/runTests.js e2e",
     "test-watch": "npm test -- --watch",
     "mongo-mac": "mkdir oticas-db; mongod --dbpath oticas-db",
-    "mongo-win": "md oticas-db & \"C:/Program Files/MongoDb/Server/3.2/bin/mongod.exe\" --dbpath oticas-db"
+    "mongo-win": "md oticas-db & \"C:/Program Files/MongoDb/Server/3.4/bin/mongod.exe\" --dbpath oticas-db"
   },
   "browserslist": "electron 1.6",
   "build": {
-    "productName": "ElectronReact",
-    "appId": "org.develar.ElectronReact",
+    "productName": "Troncash",
+    "appId": "org.develar.Troncash",
     "files": [
       "dist/",
       "node_modules/",

@@ -83,6 +83,8 @@ app.on('ready', async () => {
     mainWindow.focus();
   });
 
+  mainWindow.maximize();
+
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
