@@ -18,7 +18,7 @@ class List extends Component<void, Props, State> {
   }
 
   send(id) {
-    this.props.payOff(id);
+    this.props.payOff(id.toString());
   }
 
   render() {
@@ -57,7 +57,7 @@ class List extends Component<void, Props, State> {
               <TableRowColumn>{row.billingDate.toLocaleString('pt-br').slice(0, 10)}</TableRowColumn>
               <TableRowColumn>{ row.paidDate ? row.paidDate.toLocaleString('pt-br').slice(0, 10) :
               <RaisedButton
-                onClick={() => this.send(row.id)}
+                onClick={() => this.send(row._id)}
                 backgroundColor="#a4c639"
                 icon={<ActionOK color={fullWhite} />}
                 label="Pagar"
