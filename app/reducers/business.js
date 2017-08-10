@@ -18,24 +18,9 @@ const initialState = {
 
 export default function registerBusiness(state: business = initialState, action: actionType) {
   switch (action.type) {
-    case PAY: {
-      const list = state.business.map(b => {
-        if (b.id === action.id) {
-          b.paidDate = new Date();
-        }
-        return b;
-      });
-      return Object.assign({}, state, {
-        business: list
-      });
-    }
     case LIST_BUSINESS: {
       return Object.assign({}, state, {
-        business: action.payload.map(value => {
-          let { item } = value;
-          item.id = value._id.toString();
-          return item;
-        })
+        business: action.payload
       });
     }
     default:

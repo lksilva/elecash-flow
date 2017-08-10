@@ -39,7 +39,7 @@ class BusinessList extends Component<void, Props, State> {
   }
 
   payOff(id: string) {
-    this.props.payOff(id);
+    this.props.pay(id);
   }
 
   render() {
