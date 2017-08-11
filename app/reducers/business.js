@@ -1,5 +1,5 @@
 // @flow
-import { PAY, LIST_BUSINESS } from '../actions/business';
+import { LIST_BUSINESS } from '../actions/business';
 import { remote } from 'electron';
 
 const db = remote.getGlobal('db');
@@ -20,10 +20,21 @@ export default function registerBusiness(state: business = initialState, action:
   switch (action.type) {
     case LIST_BUSINESS: {
       return Object.assign({}, state, {
-        business: action.payload
+        business: highlightedLate(action.payload)
       });
     }
     default:
       return state;
   }
+}
+
+function highlightedLate(list) {
+  const today = new Date();
+  today.setHours(23, 59, 59, 999);
+  return list.map(item => {
+    if (!item.paidDate && new Date(item.billingDate) < today) {
+      item.isLate = true;
+    }
+    return item;
+  });
 }

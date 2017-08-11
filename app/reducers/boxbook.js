@@ -41,7 +41,7 @@ function getBalanceList(list) {
   let balance = 0;
   return list.map(item => {
     balance += item.input - item.output;
-    item.balance = balance;
+    item.balance = balance.toFixed(2);
     return item;
   });
 }

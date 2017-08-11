@@ -6,8 +6,6 @@ import SwipeableViews from 'react-swipeable-views';
 import styles from './BusinessList.css';
 import RegisterBusiness from './RegisterBusiness';
 import List from './List';
-import {remote} from 'electron';
-
 
 // var something = remote.getGlobal('url');
 // console.info('Somehewbdoue ', something);

@@ -4,6 +4,7 @@ import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowCol
 import ActionOK from 'material-ui/svg-icons/action/get-app';
 import RaisedButton from 'material-ui/RaisedButton';
 import { fullWhite } from 'material-ui/styles/colors';
+import styles from './BusinessList.css';
 
 class List extends Component<void, Props, State> {
 
@@ -49,7 +50,7 @@ class List extends Component<void, Props, State> {
         </TableHeader>
         <TableBody displayRowCheckbox={false}>
           {this.props.business.map((row, index) => (
-            <TableRow key={index}>
+            <TableRow key={index} className={row.isLate ? styles.warning : ''}>
               <TableRowColumn>{row.dateRB.toLocaleString('pt-br').slice(0, 10)}</TableRowColumn>
               <TableRowColumn>{row.clientName}</TableRowColumn>
               <TableRowColumn>{row.typePayment}</TableRowColumn>
