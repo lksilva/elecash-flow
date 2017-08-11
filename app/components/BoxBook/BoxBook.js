@@ -40,10 +40,14 @@ class BoxBook extends Component<void, Props, State> {
       showInput: false,
     };
     this.handleInput = this.handleInput.bind(this);
+    this.hideShowInput = this.hideShowInput.bind(this);
   }
 
   handleInput(payload: object) {
     this.props.saveBoxBook(payload);
+  }
+
+  hideShowInput() {
     this.setState({ showInput: !this.state.showInput });
   }
 
@@ -92,7 +96,7 @@ class BoxBook extends Component<void, Props, State> {
           </TableBody>
         </Table>
         {!this.state.showInput &&
-          <FloatingActionButton mini style={styles.floatButton} onClick={this.handleInput}>
+          <FloatingActionButton mini style={styles.floatButton} onClick={this.hideShowInput}>
             <ContentAdd />
           </FloatingActionButton>
         }

@@ -1,5 +1,5 @@
 // @flow
-import { HANDLE_SUBMIT_BOXBOOK } from '../actions/boxbook';
+import { HANDLE_SUBMIT_BOXBOOK, LIST_BOXBOOK } from '../actions/boxbook';
 
 export type boxBookStateType = {
   +boxBooks: object
@@ -10,50 +10,7 @@ type actionType = {
 };
 
 const initialState = {
-  boxBooks: [
-    {
-      dateBoxBook: '2017-08-14T03:00:00.000Z',
-      description: 'DESCRIPTION',
-      input: 121,
-      output: 2143,
-    },
-    {
-      dateBoxBook: '2017-08-14T03:00:00.000Z',
-      description: 'DESCRIPTION',
-      input: 121,
-      output: 2143,
-    },
-    {
-      dateBoxBook: '2017-08-14T03:00:00.000Z',
-      description: 'DESCRIPTION',
-      input: 121,
-      output: 2143,
-    },
-    {
-      dateBoxBook: '2017-08-14T03:00:00.000Z',
-      description: 'DESCRIPTION',
-      input: 121,
-      output: 2143,
-    },
-    {
-      dateBoxBook: '2017-08-30T03:00:00.000Z',
-      description: 'DESCRIPTION',
-      input: 121,
-      output: 2143,
-    },
-    {
-      dateBoxBook: '2017-08-30T03:00:00.000Z',
-      description: 'DESCRIPTION',
-      input: 121,
-      output: 2143,
-    },
-    {
-      dateBoxBook: '2017-08-30T03:00:00.000Z',
-      description: 'DESCRIPTION',
-      input: 121,
-      output: 2143,
-    },
-  ]
+  boxBooks: []
 };
 
 export default function handleBoxBooks(state: boxBooks = initialState, action: actionType) {
@@ -67,6 +24,11 @@ export default function handleBoxBooks(state: boxBooks = initialState, action: a
         });
       }
       return state;
+    }
+    case LIST_BOXBOOK: {
+      return Object.assign({}, state, {
+        boxBooks: getBalanceList(action.payload)
+      });
     }
     default:
       return Object.assign({}, state, {

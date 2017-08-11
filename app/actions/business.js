@@ -39,7 +39,6 @@ export const populate = (list) => ({
 export function getBusinessList() {
   return (dispatch: (action: actionType) => void) => {
     db.collection('business').find().sort({ billingDate: -1 }).toArray((err, businessList) => {
-      console.log(businessList);
       dispatch(populate(businessList.map(register => register)));
     });
   };
