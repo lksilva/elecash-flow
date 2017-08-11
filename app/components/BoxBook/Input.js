@@ -18,6 +18,8 @@ const style = {
 // transformar pro hroario pt br .toLocaleString('pt-br')
 const upper = value => value && value.toUpperCase();
 
+const fillValue = value => value || 0;
+
 const DateTimeFormat = global.Intl.DateTimeFormat;
 
 const formatDate = date => Intl.DateTimeFormat('PT-BR').format(date);
@@ -48,6 +50,9 @@ const validate = values => {
   }
   if (!values.description) {
     errors.description = 'Descrição obrigatória';
+  }
+  if (!values.input && !values.output) {
+    errors.description = 'Informe o valor de entrada ou saída';
   }
   return errors;
 };
@@ -81,6 +86,8 @@ class Input extends Component <void, Props, State> {
 
   sendBoxBook(payload: object) {
     payload.isData = true;
+    payload.output = fillValue(payload.output);
+    payload.input = fillValue(payload.input);
     this.props.handleInput(payload);
   }
 
@@ -110,8 +117,8 @@ class Input extends Component <void, Props, State> {
             name="input"
             floatingLabelText="ENTRADA"
             component={renderTextField}
-            normalize={upper}
             type="number"
+            normalize={fillValue}
           />
         </TableRowColumn>
         <TableRowColumn>
@@ -120,6 +127,7 @@ class Input extends Component <void, Props, State> {
             floatingLabelText="SAÍDA"
             component={renderTextField}
             type="number"
+            normalize={fillValue}
           />
         </TableRowColumn>
         <TableRowColumn>
