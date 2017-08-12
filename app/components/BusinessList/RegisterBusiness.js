@@ -1,11 +1,16 @@
 // @flow
 import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, reset } from 'redux-form';
 import RaisedButton from 'material-ui/RaisedButton';
 import DatePicker from 'material-ui/DatePicker';
 import TextField from 'material-ui/TextField';
 import styles from './BusinessList.css';
 // Data - Cliente - Tipo de Pagemento - Valor - Data Pagamento - Dia Pagamento
+
+const afterSubmit = (result, dispatch) => {
+  window.alert('Venda cadastrada com sucesso!!!');
+  return dispatch(reset('RegisterBusiness'));
+};
 
 const upper = value => value && value.toUpperCase();
 
@@ -87,11 +92,22 @@ class RegisterBusiness extends Component {
 
   constructor() {
     super();
+    this.state = {
+      open: false
+    };
     this.submit = this.submit.bind(this);
   }
 
   submit(payload: object) {
     this.props.saveBusiness(payload);
+  }
+
+  openTouch() {
+    this.setState({ open: true });
+  }
+
+  closeTouch() {
+    this.setState({ open: false });
   }
 
   render() {
@@ -146,5 +162,6 @@ class RegisterBusiness extends Component {
 
 export default reduxForm({
   form: 'RegisterBusiness',
+  onSubmitSuccess: afterSubmit,
   validate
 })(RegisterBusiness);
