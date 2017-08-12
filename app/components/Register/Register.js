@@ -7,7 +7,14 @@ import InstructForm from './InstructForm';
 import LensInformation from './LensInformation';
 import DatePicker from 'material-ui/DatePicker';
 import InputMask from 'react-input-mask';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, reset } from 'redux-form';
+
+const afterSubmit = (result, dispatch) => {
+  window.alert('Ordem de serviço cadastrada com sucesso!!!');
+  return dispatch(reset('Register'));
+};
+
+const upper = value => value && value.toUpperCase();
 
 const customStyle = {
   paddingDatePicker: {
@@ -105,6 +112,7 @@ class Register extends Component {
   submit: () => void;
   props: {
     saveServiceOrder: () => void,
+    getListServiceOrder: () => void,
     handleSubmit: () => void,
     register_form: object
   }
@@ -112,6 +120,10 @@ class Register extends Component {
   constructor() {
     super();
     this.submit = this.submit.bind(this);
+  }
+
+  componentWillMount() {
+    this.props.getListServiceOrder();
   }
 
   submit(payload: object) {
@@ -147,20 +159,20 @@ class Register extends Component {
               name="name"
               style={customStyle.fullRow}
               floatingLabelText="NOME"
-              inputStyle={customStyle.upperCase}
+              normalize={upper}
               component={stylezedTextField}
             />
             <Field
               style={customStyle.fullRow}
               floatingLabelText="PAI"
-              inputStyle={customStyle.upperCase}
+              normalize={upper}
               name="father"
               component={stylezedTextField}
             />
             <Field
               style={customStyle.fullRow}
               floatingLabelText="MÃE"
-              inputStyle={customStyle.upperCase}
+              normalize={upper}
               name="mother"
               component={stylezedTextField}
             />
@@ -172,7 +184,7 @@ class Register extends Component {
             />
             <Field
               floatingLabelText="ORG EXP"
-              inputStyle={customStyle.upperCase}
+              normalize={upper}
               name="org_exp"
               component={stylezedTextField}
             />
@@ -180,25 +192,25 @@ class Register extends Component {
             <Field floatingLabelText="DATA DE NASCIMENTO" name="date_of_birth" mask="99/99/9999" component={renderMaskField} />
             <Field
               floatingLabelText="ENDEREÇO"
-              inputStyle={customStyle.upperCase}
+              normalize={upper}
               name="address"
               component={stylezedTextField}
             />
             <Field
               floatingLabelText="BAIRRO"
-              inputStyle={customStyle.upperCase}
+              normalize={upper}
               name="neighborhood"
               component={stylezedTextField}
             />
             <Field
               floatingLabelText="CIDADE"
-              inputStyle={customStyle.upperCase}
+              normalize={upper}
               name="city"
               component={stylezedTextField}
             />
             <Field
               floatingLabelText="UF"
-              inputStyle={customStyle.upperCase}
+              normalize={upper}
               name="uf"
               component={stylezedTextField}
             />
@@ -206,7 +218,7 @@ class Register extends Component {
             <Field floatingLabelText="TELEFONE RESIDENCIAL" name="phone" mask="(99) 9999-9999" component={renderMaskField} />
             <Field
               floatingLabelText="REFERÊNCIAL"
-              inputStyle={customStyle.upperCase}
+              normalize={upper}
               name="reference"
               component={stylezedTextField}
             />
@@ -223,5 +235,6 @@ class Register extends Component {
 
 export default reduxForm({
   form: 'Register',
+  onSubmitSuccess: afterSubmit,
   validate
 })(Register);
