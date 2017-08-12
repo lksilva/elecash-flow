@@ -114,7 +114,6 @@ class Register extends Component {
     saveServiceOrder: () => void,
     getListServiceOrder: () => void,
     handleSubmit: () => void,
-    serviceOrders: Array,
     register_form: object
   }
 
@@ -132,7 +131,6 @@ class Register extends Component {
   }
 
   render() {
-    console.log(this.props.serviceOrders);
     return (
       <div>
         <h3 className={styles.center}>ORDEM DE SERVIÇO</h3>

@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import Divider from 'material-ui/Divider';
 import TextField from 'material-ui/TextField';
-import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
+import { Card, CardHeader, CardText } from 'material-ui/Card';
 import styles from './Register.css';
 import { Field } from 'redux-form';
 

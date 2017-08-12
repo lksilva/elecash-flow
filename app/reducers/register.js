@@ -10,7 +10,7 @@ type actionType = {
 };
 
 const initialState = {
-  serviceOrders: {}
+  serviceOrders: []
 };
 
 export default function register(state: serviceOrders = initialState, action: actionType) {
