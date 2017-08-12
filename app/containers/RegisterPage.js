@@ -5,7 +5,7 @@ import * as RegisterActions from '../actions/register';
 
 function mapStateToProps(state) {
   return {
-    entity: state.register.entity
+    serviceOrders: state.register.serviceOrders
   };
 }
 
