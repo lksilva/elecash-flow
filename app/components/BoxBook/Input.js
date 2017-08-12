@@ -118,7 +118,6 @@ class Input extends Component <void, Props, State> {
             floatingLabelText="ENTRADA"
             component={renderTextField}
             type="number"
-            normalize={fillValue}
           />
         </TableRowColumn>
         <TableRowColumn>
@@ -127,7 +126,6 @@ class Input extends Component <void, Props, State> {
             floatingLabelText="SAÍDA"
             component={renderTextField}
             type="number"
-            normalize={fillValue}
           />
         </TableRowColumn>
         <TableRowColumn>
