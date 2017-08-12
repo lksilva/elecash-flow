@@ -36,7 +36,7 @@ class List extends Component<void, Props, State> {
         >
           <TableRow>
             <TableHeaderColumn colSpan="6" style={{ textAlign: 'center' }}>
-              {'Livro caixa do mês '}
+              {'Lista de vendas'}
             </TableHeaderColumn>
           </TableRow>
           <TableRow>

@@ -27,7 +27,7 @@ export function saveBoxBook(item) {
 
 export function getBoxBookList() {
   return (dispatch: (action: actionType) => void) => {
-    db.collection('boxBook').find().toArray((err, boxBookList) => {
+    db.collection('boxBook').find().sort({ dateBoxBook: -1 }).toArray((err, boxBookList) => {
       dispatch(populate(boxBookList));
     });
   };

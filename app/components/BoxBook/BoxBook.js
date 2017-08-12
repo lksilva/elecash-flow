@@ -49,6 +49,7 @@ class BoxBook extends Component<void, Props, State> {
 
   handleInput(payload: object) {
     this.props.saveBoxBook(payload);
+    this.hideShowInput();
   }
 
   hideShowInput() {
