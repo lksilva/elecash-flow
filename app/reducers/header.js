@@ -11,9 +11,9 @@ type actionType = {
 
 const initialState = {
   items: [
-        { id: 1, route: '/', active: true, name: 'Página Inicial' },
-        { id: 2, route: '/businessList', active: false, name: 'Vendas' },
-        { id: 3, route: '/boxBook', active: false, name: 'Livro Caixa' },
+        { id: 1, route: '/', active: true, name: 'Vendas' },
+        { id: 2, route: '/boxBook', active: false, name: 'Livro Caixa' },
+        { id: 3, route: '/home', active: false, name: 'Lista de OS' },
         { id: 4, route: '/register', active: false, name: 'Ordem de Serviço' }
   ]
 };

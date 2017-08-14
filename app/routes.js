@@ -12,8 +12,8 @@ export default () => (
     <Switch>
       <Route path="/register" component={RegisterPage} />
       <Route path="/boxBook" component={BoxBookPage} />
-      <Route path="/businessList" component={BusinessList} />
-      <Route path="/" component={HomePage} />
+      <Route path="/home" component={HomePage} />
+      <Route path="/" component={BusinessList} />
     </Switch>
   </App>
 );
