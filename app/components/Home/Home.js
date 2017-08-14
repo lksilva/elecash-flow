@@ -1,6 +1,9 @@
 // @flow
 import React, { Component } from 'react';
 import { Card, CardHeader, CardText } from 'material-ui/Card';
+import { List, ListItem } from 'material-ui/List';
+import ActionInfo from 'material-ui/svg-icons/action/info';
+import Paper from 'material-ui/Paper';
 
 export default class Home extends Component {
 
@@ -14,6 +17,7 @@ export default class Home extends Component {
   }
 
   render() {
+    console.log(this.props.serviceOrders);
     return (
       <div>
         {this.props.serviceOrders.map((item, index) => (
@@ -25,7 +29,14 @@ export default class Home extends Component {
               showExpandableButton
             />
             <CardText expandable>
-              <h5>OLHO DIREITO</h5>
+              <Paper zDepth={3} >
+                <List>
+                  <ListItem primaryText="All mail" secondaryText="Jan 28, 2014" rightIcon={<ActionInfo />} />
+                  <ListItem primaryText="Trash" rightIcon={<ActionInfo />} />
+                  <ListItem primaryText="Spam" rightIcon={<ActionInfo />} />
+                  <ListItem primaryText="Follow up" rightIcon={<ActionInfo />} />
+                </List>
+              </Paper>
             </CardText>
           </Card>
           ))}
