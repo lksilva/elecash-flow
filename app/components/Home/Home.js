@@ -4,7 +4,9 @@ import { Card, CardHeader, CardText } from 'material-ui/Card';
 import { List, ListItem } from 'material-ui/List';
 import ActionInfo from 'material-ui/svg-icons/action/info';
 import Paper from 'material-ui/Paper';
+import labels from './labels';
 
+console.log(labels.address);
 export default class Home extends Component {
 
   props: {
@@ -17,7 +19,6 @@ export default class Home extends Component {
   }
 
   render() {
-    console.log(this.props.serviceOrders);
     return (
       <div>
         {this.props.serviceOrders.map((item, index) => (
@@ -31,10 +32,12 @@ export default class Home extends Component {
             <CardText expandable>
               <Paper zDepth={3} >
                 <List>
-                  <ListItem primaryText="All mail" secondaryText="Jan 28, 2014" rightIcon={<ActionInfo />} />
-                  <ListItem primaryText="Trash" rightIcon={<ActionInfo />} />
-                  <ListItem primaryText="Spam" rightIcon={<ActionInfo />} />
-                  <ListItem primaryText="Follow up" rightIcon={<ActionInfo />} />
+                  {Object.keys(item).map((key, index) => {
+                    if (key !== '_id' && key !== 'dateUser') {
+                      return <ListItem key={index} primaryText={labels[key]} secondaryText={item[key]} rightIcon={<ActionInfo />} />;
+                    }
+                  }
+                  )}
                 </List>
               </Paper>
             </CardText>
