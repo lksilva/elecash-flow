@@ -6,7 +6,6 @@ import ActionInfo from 'material-ui/svg-icons/action/info';
 import Paper from 'material-ui/Paper';
 import labels from './labels';
 
-console.log(labels.address);
 export default class Home extends Component {
 
   props: {

@@ -13,6 +13,7 @@
 import { app, BrowserWindow } from 'electron';
 import MenuBuilder from './menu';
 import { MongoClient } from 'mongodb';
+import { dialog } from 'electron';
 
 let mainWindow = null;
 
@@ -70,6 +71,10 @@ app.on('ready', async () => {
 
   const url = 'mongodb://localhost:27017/oticas-db';
   MongoClient.connect(url, (err, db) => {
+    if (err) {
+      dialog.showErrorBox('ERRO DE CONEXÃO', 'Houve uma falha ao tentar conectar-se com o banco de dados. Para o correto funcionamento do aplicação regularize sua conexão!!!');
+      return;
+    }
     global.db = db;
   });
 
