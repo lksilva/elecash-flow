@@ -14,6 +14,28 @@ import { app, BrowserWindow } from 'electron';
 import MenuBuilder from './menu';
 import { MongoClient } from 'mongodb';
 import { dialog } from 'electron';
+import { shell } from 'electron';
+import { exec } from 'child_process';
+
+// const exec = require('child_process').exec;
+
+function execute(script) {
+  return new Promise((resolve, reject) => {
+    exec(script, (error, stdout, stderr) => {
+      if (error) {
+        reject(stderr);
+      } else {
+        resolve(stdout);
+      }
+    });
+  });
+}
+
+execute('npm run mongo-mac').then(stdout => {
+  console.log('STDOUT', stdout);
+}).catch(stderr => {
+  console.log('STDERR', stderr);
+});
 
 let mainWindow = null;
 
@@ -55,7 +77,6 @@ app.on('window-all-closed', () => {
   }
 });
 
-
 app.on('ready', async () => {
   if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true') {
     await installExtensions();
@@ -72,6 +93,7 @@ app.on('ready', async () => {
   const url = 'mongodb://localhost:27017/oticas-db';
   MongoClient.connect(url, (err, db) => {
     if (err) {
+      shell.beep();
       dialog.showErrorBox('ERRO DE CONEXÃO', 'Houve uma falha ao tentar conectar-se com o banco de dados. Para o correto funcionamento do aplicação regularize sua conexão!!!');
       return;
     }
