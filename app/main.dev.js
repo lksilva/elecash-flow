@@ -31,7 +31,7 @@ function execute(script) {
   });
 }
 
-execute('npm run mongo-mac').then(stdout => {
+execute('npm run mongo-win').then(stdout => {
   console.log('STDOUT', stdout);
 }).catch(stderr => {
   console.log('STDERR', stderr);
