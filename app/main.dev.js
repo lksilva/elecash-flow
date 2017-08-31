@@ -31,11 +31,15 @@ function execute(script) {
   });
 }
 
-execute('npm run mongo-win').then(stdout => {
-  console.log('STDOUT', stdout);
-}).catch(stderr => {
-  console.log('STDERR', stderr);
-});
+function connectToMongoDB() {
+  return new Promise(resolve => {
+    execute('npm run mongo-win').then((stdout, stderr) => {
+      resolve(stdout);
+    }).catch(stderr => {
+      resolve(stderr);
+    });
+  });
+}
 
 let mainWindow = null;
 
@@ -78,6 +82,10 @@ app.on('window-all-closed', () => {
 });
 
 app.on('ready', async () => {
+  console.log('Conectando a base de dados...');
+  await connectToMongoDB();
+  console.log('Conectado a base de dados...');
+
   if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true') {
     await installExtensions();
   }
