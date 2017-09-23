@@ -5,6 +5,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import DatePicker from 'material-ui/DatePicker';
 import TextField from 'material-ui/TextField';
 import styles from './BusinessList.css';
+import SelectField from 'material-ui/SelectField'
+import MenuItem from 'material-ui/MenuItem'
 // Data - Cliente - Tipo de Pagemento - Valor - Data Pagamento - Dia Pagamento
 
 const afterSubmit = (result, dispatch) => {
@@ -24,20 +26,20 @@ const renderDatePicker = ({
   hintText,
   container,
 }) => (
-  <DatePicker
-    hintText={hintText}
-    container={container}
-    DateTimeFormat={DateTimeFormat}
-    formatDate={formatDate}
-    floatingLabelText={floatingLabelText}
-    style={customStyle.fullRow}
-    textFieldStyle={customStyle.fullWidth}
-    okLabel="OK"
-    cancelLabel="Cancelar"
-    locale="pt-br"
-    onChange={(event, value) => input.onChange(value)}
-  />
-);
+    <DatePicker
+      hintText={hintText}
+      container={container}
+      DateTimeFormat={DateTimeFormat}
+      formatDate={formatDate}
+      floatingLabelText={floatingLabelText}
+      style={customStyle.fullRow}
+      textFieldStyle={customStyle.fullWidth}
+      okLabel="OK"
+      cancelLabel="Cancelar"
+      locale="pt-br"
+      onChange={(event, value) => input.onChange(value)}
+    />
+  );
 
 const renderTextField = ({
   input,
@@ -64,6 +66,20 @@ const customStyle = {
     margin: '2.5%'
   },
 };
+
+const renderSelectField = ({
+  input,
+  label,
+  children,
+  ...custom
+}) =>
+  (<SelectField
+    floatingLabelText={label}
+    {...input}
+    onChange={(event, index, value) => input.onChange(value)}
+    children={children}
+    {...custom}
+  />);
 
 const validate = values => {
   const errors = {};
@@ -111,6 +127,7 @@ class RegisterBusiness extends Component {
   }
 
   render() {
+    console.log('Mostrar Select Menu de pagar parcelado', this.props.installmentPay);
     return (
       <form onSubmit={this.props.handleSubmit(this.submit)} className={styles.form}>
         <Field
@@ -129,11 +146,14 @@ class RegisterBusiness extends Component {
         />
         <Field
           name="typePayment"
-          floatingLabelText="TIPO DE PAGAMENTO"
-          type="text"
-          component={renderTextField}
-          normalize={upper}
-        />
+          component={renderSelectField}
+          label="TIPO DE PAGAMENTO"
+        >
+          <MenuItem value="DN" primaryText="DINHEIRO" />
+          <MenuItem value="CT" primaryText="CARTÃO" />
+          <MenuItem value="BL" primaryText="BOLETO" />
+          <MenuItem value="CR" primaryText="CARNÉ" />
+        </Field>
         <Field
           name="price"
           floatingLabelText="VALOR"

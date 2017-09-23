@@ -41,6 +41,7 @@ class BusinessList extends Component<void, Props, State> {
   }
 
   render() {
+    const isInstallmentPay = !!this.props.formValues && !!this.props.formValues.values && this.props.formValues.values.typePayment !== 'DN';
     return (
       <div className={styles.content}>
         <Tabs
@@ -55,7 +56,10 @@ class BusinessList extends Component<void, Props, State> {
           onChangeIndex={this.handleChange}
         >
           <List business={this.props.business} payOff={this.payOff} />
-          <RegisterBusiness saveBusiness={this.props.saveBusiness} />
+          <RegisterBusiness
+            installmentPay={isInstallmentPay}
+            saveBusiness={this.props.saveBusiness}
+          />
         </SwipeableViews>
       </div>
     );
