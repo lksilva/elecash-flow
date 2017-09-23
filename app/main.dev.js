@@ -15,14 +15,25 @@ import MenuBuilder from './menu';
 import { MongoClient } from 'mongodb';
 import { dialog } from 'electron';
 import { shell } from 'electron';
-import { exec } from 'child_process';
+// import { exec } from 'child_process';
+import { execFile } from 'child_process';
+// import { spawn } from 'child_process';
 
-// const exec = require('child_process').exec;
-
-function execute(script) {
+function execute() {
+  // return new Promise((resolve, reject) => {
+  //   spawn('npm', ['run', ' mongo-win'], { shell: true }, (error, stdout, stderr) => {
+  //     if (error) {
+  //       reject(stderr);
+  //     } else {
+  //       resolve(stdout);
+  //     }
+  //   });
+  // });
   return new Promise((resolve, reject) => {
-    exec(script, (error, stdout, stderr) => {
+    execFile('npm', ['run', ' mongo-win'], (error, stdout, stderr) => {
       if (error) {
+        console.log('####Error', error);
+        console.log('####STDERR', stderr);
         reject(stderr);
       } else {
         resolve(stdout);
@@ -33,9 +44,11 @@ function execute(script) {
 
 function connectToMongoDB() {
   return new Promise(resolve => {
-    execute('npm run mongo-win').then((stdout, stderr) => {
+    execute().then((stdout, stderr) => {
+      console.log('Promisse resolved');
       resolve(stdout);
     }).catch(stderr => {
+      console.log('Promisse catch');
       resolve(stderr);
     });
   });
