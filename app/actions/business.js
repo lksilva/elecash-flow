@@ -47,19 +47,21 @@ export function getBusinessList() {
 export function saveBusiness(item) {
   if (item.plotsPayment) {
     let businessArr = [];
-    businessArr = [...businessArr, item];
+    const priceForPlot = (item.price / item.plotsPayment).toFixed(2);
+    businessArr = [...businessArr, Object.assign({}, item, { price: priceForPlot })];
 
     for (let i = 1; i < item.plotsPayment; i++) {
       const date = new Date(item.billingDate);
       date.setMonth(date.getMonth() + i);
-      const newBusiness = Object.assign({}, item, { billingDate: date });
+      const newBusiness = Object.assign({}, item, { billingDate: date, price: priceForPlot });
       businessArr = [...businessArr, newBusiness];
     }
-    return(dispatch: (action: actionType) => void) => {
+
+    return (dispatch: (action: actionType) => void) => {
       db.collection('business').insertMany(businessArr, (err, result) => {
         console.log(err);
         console.log(result);
-        dispatch(getBusinessList);
+        dispatch(getBusinessList());
       });
     };
   } else {
