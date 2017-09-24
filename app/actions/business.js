@@ -45,18 +45,37 @@ export function getBusinessList() {
 }
 
 export function saveBusiness(item) {
-  return (dispatch: (action: actionType) => void) => {
-    db.collection('business').insert({
-      clientName: item.clientName,
-      dateRB: item.dateRB,
-      typePayment: item.typePayment,
-      price: item.price,
-      billingDate: item.billingDate,
-      paidDate: item.paidDate
-    }, (err, result) => {
-      dispatch(getBusinessList());
-    });
-  };
+  if (item.plotsPayment) {
+    let businessArr = [];
+    businessArr = [...businessArr, item];
+
+    for (let i = 1; i < item.plotsPayment; i++) {
+      const date = new Date(item.billingDate);
+      date.setMonth(date.getMonth() + i);
+      const newBusiness = Object.assign({}, item, { billingDate: date });
+      businessArr = [...businessArr, newBusiness];
+    }
+    return(dispatch: (action: actionType) => void) => {
+      db.collection('business').insertMany(businessArr, (err, result) => {
+        console.log(err);
+        console.log(result);
+        dispatch(getBusinessList);
+      });
+    };
+  } else {
+    return (dispatch: (action: actionType) => void) => {
+      db.collection('business').insert({
+        clientName: item.clientName,
+        dateRB: item.dateRB,
+        typePayment: item.typePayment,
+        price: item.price,
+        billingDate: item.billingDate,
+        paidDate: item.paidDate
+      }, (err, result) => {
+        dispatch(getBusinessList());
+      });
+    };
+  }
 }
 
 export function pay(id) {

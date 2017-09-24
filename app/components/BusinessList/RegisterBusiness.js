@@ -5,8 +5,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import DatePicker from 'material-ui/DatePicker';
 import TextField from 'material-ui/TextField';
 import styles from './BusinessList.css';
-import SelectField from 'material-ui/SelectField'
-import MenuItem from 'material-ui/MenuItem'
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
 // Data - Cliente - Tipo de Pagemento - Valor - Data Pagamento - Dia Pagamento
 
 const afterSubmit = (result, dispatch) => {
@@ -78,6 +78,7 @@ const renderSelectField = ({
     {...input}
     onChange={(event, index, value) => input.onChange(value)}
     children={children}
+    style={customStyle.fullRow}
     {...custom}
   />);
 
@@ -103,7 +104,8 @@ class RegisterBusiness extends Component {
 
   props: {
     saveBusiness: () => void,
-    handleSubmit: () => void
+    handleSubmit: () => void,
+    installmentPay: boolean
   }
 
   constructor() {
@@ -132,7 +134,7 @@ class RegisterBusiness extends Component {
       <form onSubmit={this.props.handleSubmit(this.submit)} className={styles.form}>
         <Field
           name="dateRB"
-          floatingLabelText="DATA"
+          floatingLabelText="DATA DA REALIZAÇÃO DA VENDA"
           hintText="DATA"
           container="inline"
           component={renderDatePicker}
@@ -154,6 +156,27 @@ class RegisterBusiness extends Component {
           <MenuItem value="BL" primaryText="BOLETO" />
           <MenuItem value="CR" primaryText="CARNÉ" />
         </Field>
+        {this.props.installmentPay &&
+          <Field
+            name="plotsPayment"
+            component={renderSelectField}
+            label="NUMERO DE PARCELAS"
+          >
+            <MenuItem value={1} primaryText="1x" />
+            <MenuItem value={2} primaryText="2x" />
+            <MenuItem value={3} primaryText="3x" />
+            <MenuItem value={4} primaryText="4x" />
+            <MenuItem value={5} primaryText="5x" />
+            <MenuItem value={6} primaryText="6x" />
+            <MenuItem value={7} primaryText="7x" />
+            <MenuItem value={8} primaryText="8x" />
+            <MenuItem value={9} primaryText="9x" />
+            <MenuItem value={10} primaryText="10x" />
+            <MenuItem value={11} primaryText="11x" />
+            <MenuItem value={12} primaryText="12x" />
+            <MenuItem value={15} primaryText="15x" />
+          </Field>
+        }
         <Field
           name="price"
           floatingLabelText="VALOR"
@@ -167,13 +190,13 @@ class RegisterBusiness extends Component {
           container="inline"
           component={renderDatePicker}
         />
-        <Field
-          name="paidDate"
-          floatingLabelText="DIA DO PAGAMENTO"
-          hintText="DATA"
-          container="inline"
-          component={renderDatePicker}
-        />
+         <Field
+           name="paidDate"
+           floatingLabelText="DIA DO PAGAMENTO"
+           hintText="DATA"
+           container="inline"
+           component={renderDatePicker}
+         />
         <RaisedButton style={customStyle.btn} type="submit" label="Salvar" primary />
       </form>
     );
