@@ -44,6 +44,14 @@ export function getBusinessList() {
   };
 }
 
+export function find(name) {
+  return (dispatch: (action: actionType) => void) => {
+    db.collection('business').find({ clientName:{'$regex': name} }).sort({ billingDate: -1 }).toArray((err, businessList) => {
+      dispatch(populate(businessList.map(register => register)));
+    });
+  };
+}
+
 export function saveBusiness(item) {
   if (item.plotsPayment) {
     let businessArr = [];
@@ -64,8 +72,8 @@ export function saveBusiness(item) {
         dispatch(getBusinessList());
       });
     };
-  } else {
-    return (dispatch: (action: actionType) => void) => {
+  }
+  return (dispatch: (action: actionType) => void) => {
       db.collection('business').insert({
         clientName: item.clientName,
         dateRB: item.dateRB,
@@ -77,7 +85,6 @@ export function saveBusiness(item) {
         dispatch(getBusinessList());
       });
     };
-  }
 }
 
 export function pay(id) {

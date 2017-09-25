@@ -55,7 +55,7 @@ class BusinessList extends Component<void, Props, State> {
           index={this.state.slideIndex}
           onChangeIndex={this.handleChange}
         >
-          <List business={this.props.business} payOff={this.payOff} />
+          <List business={this.props.business} payOff={this.payOff} find={this.props.find}/>
           <RegisterBusiness
             installmentPay={isInstallmentPay}
             saveBusiness={this.props.saveBusiness}
