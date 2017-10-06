@@ -29,7 +29,7 @@
     "test-e2e": "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 node --trace-warnings ./test/runTests.js e2e",
     "test-watch": "npm test -- --watch",
     "mongo-mac": "mkdir oticas-db; mongod --dbpath oticas-db",
-    "mongo-win": "mongod --dbpath oticas-db"
+    "mongo-win": "mongod --dbpath \"C:/oticas-db\""
   },
   "browserslist": "electron 1.6",
   "build": {

@@ -21,8 +21,10 @@ import { execFile } from 'child_process';
 
 function execute() {
   // return new Promise((resolve, reject) => {
-  //   spawn('npm', ['run', ' mongo-win'], { shell: true }, (error, stdout, stderr) => {
+  //   spawn('npm', ['run', 'mongo-win'], { shell: true }, (error, stdout, stderr) => {
   //     if (error) {
+  //       console.log('####Error', error);
+  //       console.log('####STDERR', stderr);
   //       reject(stderr);
   //     } else {
   //       resolve(stdout);
@@ -30,7 +32,7 @@ function execute() {
   //   });
   // });
   return new Promise((resolve, reject) => {
-    execFile('npm', ['run', ' mongo-win'], (error, stdout, stderr) => {
+    execFile('npm', ['run', 'mongo-win'], (error, stdout, stderr) => {
       if (error) {
         console.log('####Error', error);
         console.log('####STDERR', stderr);
